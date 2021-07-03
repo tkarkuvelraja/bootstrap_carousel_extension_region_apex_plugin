@@ -1,4 +1,4 @@
-# Oracle APEX Plug-In: Slideshow
+# Oracle APEX Plug-In: Bootstrap Carousel Extension
 
 A carousel/slideshow is used to cycle through elements. A plugin to display images as a responsive slideshow. Special thanks to **Farzad Soltani** for his **bootstrap image carousel plugin**, that will add a bootstrap carousel with three images (static), but this plugin (**Bootstrap Carousel Extension**) will render a bootstrap carousel region based on query output (dynamic) and changing the slides can be controlled via left and right arrow keys.
 
