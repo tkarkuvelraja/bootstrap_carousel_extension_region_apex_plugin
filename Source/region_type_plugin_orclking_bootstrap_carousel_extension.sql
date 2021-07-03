@@ -23,11 +23,11 @@ wwv_flow_api.import_begin (
 end;
 /
  
-prompt APPLICATION 1006 - Organization Hierarchy
+prompt APPLICATION 1006 - About Oracle and Oracle APEX
 --
 -- Application Export:
 --   Application:     1006
---   Name:            Organization Hierarchy
+--   Name:            About Oracle and Oracle APEX
 --   Date and Time:   22:54 Saturday July 3, 2021
 --   Exported By:     KARKUVELRAJA.T
 --   Flashback:       0
