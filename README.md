@@ -67,11 +67,11 @@ Plugin will be listed under plug-ins bucket after successful installation.
  
  **Step 7:** Fill required attributes
  
-![image](https://user-images.githubusercontent.com/85283603/124616842-7a601300-de87-11eb-906d-9b581fe3f0ec.png)
+![image](https://user-images.githubusercontent.com/85283603/124619944-1ee35480-de8a-11eb-98d8-f4dc007ed2ca.png)
  
  **Output:** Then you output would display like this,
  
- ![image](https://user-images.githubusercontent.com/85283603/124364006-b4df6b00-dc4f-11eb-99c5-3714ad792d67.png)
+ ![image](https://user-images.githubusercontent.com/85283603/124620036-2e629d80-de8a-11eb-9330-23727ed3de1d.png)
  
 Note: This pugin will support for **all language applications**. Please give a try.
   
