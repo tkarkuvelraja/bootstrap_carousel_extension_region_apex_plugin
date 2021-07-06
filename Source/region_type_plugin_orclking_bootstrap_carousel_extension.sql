@@ -23,11 +23,11 @@ wwv_flow_api.import_begin (
 end;
 /
  
-prompt APPLICATION 1011 - DAMAC Learning
+prompt APPLICATION 1011 - About Oracle and Oracle APEX
 --
 -- Application Export:
 --   Application:     1011
---   Name:            DAMAC Learning
+--   Name:            About Oracle and Oracle APEX
 --   Date and Time:   21:00 Tuesday July 6, 2021
 --   Exported By:     KARKUVELRAJA.T
 --   Flashback:       0
