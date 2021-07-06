@@ -72,6 +72,8 @@ Plugin will be listed under plug-ins bucket after successful installation.
  **Output:** Then you output would display like this,
  
  ![image](https://user-images.githubusercontent.com/85283603/124364006-b4df6b00-dc4f-11eb-99c5-3714ad792d67.png)
+ 
+Note: This pugin will support for all language applications. Please give a try.
   
 That's it.
 
