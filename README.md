@@ -67,7 +67,7 @@ Plugin will be listed under plug-ins bucket after successful installation.
  
  **Step 7:** Fill required attributes
  
-![image](https://user-images.githubusercontent.com/85283603/124364021-cd4f8580-dc4f-11eb-9499-53c3585049e2.png)
+![image](https://user-images.githubusercontent.com/85283603/124616842-7a601300-de87-11eb-906d-9b581fe3f0ec.png)
  
  **Output:** Then you output would display like this,
  
