@@ -28,7 +28,7 @@ prompt APPLICATION 1006 - About Oracle and Oracle APEX
 -- Application Export:
 --   Application:     1006
 --   Name:            About Oracle and Oracle APEX
---   Date and Time:   22:54 Saturday July 3, 2021
+--   Date and Time:   18:45 Tuesday July 6, 2021
 --   Exported By:     KARKUVELRAJA.T
 --   Flashback:       0
 --   Export Type:     Component Export
@@ -64,8 +64,10 @@ wwv_flow_api.create_plugin(
 '  l_data              CLOB; -- To store column values ',
 '  l_html_body         CLOB;',
 '  l_img_height        apex_application_page_regions.attribute_01%TYPE:= p_region.attribute_01;',
+'  l_img_width         apex_application_page_regions.attribute_02%TYPE:= p_region.attribute_02;',
 '  l_pause             apex_application_page_regions.attribute_03%TYPE:= p_region.attribute_03;',
-'  l_interval          apex_application_page_regions.attribute_02%TYPE:= p_region.attribute_02;',
+'  l_interval          apex_application_page_regions.attribute_04%TYPE:= p_region.attribute_04;',
+'  l_border_radius     apex_application_page_regions.attribute_05%TYPE:= p_region.attribute_05;',
 '  l_class             VARCHAR2(100);',
 '  l_row_count         NUMBER;',
 'BEGIN ',
@@ -103,7 +105,7 @@ wwv_flow_api.create_plugin(
 '<body>',
 '',
 '<div class="container">',
-'  <div id="myCarousel_''||l_region||''" class="carousel slide" %INTERVAL% %PAUSE% style="width: 1100px">',
+'  <div id="myCarousel_''||l_region||''" class="carousel slide" %INTERVAL% %PAUSE% style="width: ''||nvl(l_img_width,600)||''px;">',
 '    <!-- Indicators -->',
 '    <ol class="carousel-indicators">'';',
 '    ',
@@ -116,15 +118,15 @@ wwv_flow_api.create_plugin(
 '   ',
 '  END loop;',
 '  ',
-'       l_html_body := l_html_body ||'' ''||''</ol> <div class="carousel-inner">'';',
+'       l_html_body := l_html_body ||'' ''||''</ol> <div class="carousel-inner" style="border-radius:''||nvl(l_border_radius,0)||''px;">'';',
 '       ',
 '       FOR j IN 1..l_column_value_list(1).count loop',
 '       ',
 '    ',
 '    l_html_body := l_html_body ||'' ''||case when j = 1 then ''<div class="item active">',
-'        <img src="''||l_column_value_list(2)(j)||''"style="width:100%;height:''||l_img_height||''px;">',
+'        <img src="''||l_column_value_list(2)(j)||''"style="width:100%;height:''||nvl(l_img_height,300)||''px;border-radius:''||nvl(l_border_radius,0)||''px;">',
 '      </div>'' else ''<div class="item">',
-'        <img src="''||l_column_value_list(2)(j)||''"style="width:100%;height:''||l_img_height||''px;">',
+'        <img src="''||l_column_value_list(2)(j)||''"style="width:100%;height:''||nvl(l_img_height,300)||''px;border-radius:''||nvl(l_border_radius,0)||''px;">',
 '      </div>'' end;',
 '    ',
 '  END loop;',
@@ -132,11 +134,11 @@ wwv_flow_api.create_plugin(
 '  l_html_body := l_html_body ||'' ''||''</div>',
 '',
 '    <!-- Left and right controls -->',
-'    <a class="left carousel-control" href="#myCarousel_''||l_region||''" data-slide="prev">',
+'    <a class="left carousel-control" href="#myCarousel_''||l_region||''" data-slide="prev" style="border-radius:''||nvl(l_border_radius,0)||''px;">',
 '      <span class="glyphicon glyphicon-chevron-left"></span>',
 '      <span class="sr-only">Previous</span>',
 '    </a>',
-'    <a class="right carousel-control" href="#myCarousel_''||l_region||''" data-slide="next">',
+'    <a class="right carousel-control" href="#myCarousel_''||l_region||''" data-slide="next" style="border-radius:''||nvl(l_border_radius,0)||''px;">',
 '      <span class="glyphicon glyphicon-chevron-right"></span>',
 '      <span class="sr-only">Next</span>',
 '    </a>',
@@ -181,90 +183,29 @@ wwv_flow_api.create_plugin_attribute(
 ,p_prompt=>'Img. Height'
 ,p_attribute_type=>'NUMBER'
 ,p_is_required=>false
-,p_default_value=>'450'
+,p_default_value=>'300'
 ,p_display_length=>3
 ,p_max_length=>3
 ,p_supported_ui_types=>'DESKTOP'
 ,p_is_translatable=>false
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(173503242488591243)
+ p_id=>wwv_flow_api.id(175046752769402345)
 ,p_plugin_id=>wwv_flow_api.id(346922828448891912)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>2
 ,p_display_sequence=>20
-,p_prompt=>'Img. Interval (Sec)'
-,p_attribute_type=>'SELECT LIST'
+,p_prompt=>'Img. Width'
+,p_attribute_type=>'NUMBER'
 ,p_is_required=>true
-,p_default_value=>'3'
+,p_default_value=>'600'
+,p_display_length=>4
+,p_max_length=>4
+,p_supported_ui_types=>'DESKTOP'
 ,p_is_translatable=>false
-,p_lov_type=>'STATIC'
-);
-wwv_flow_api.create_plugin_attr_value(
- p_id=>wwv_flow_api.id(173503889906591756)
-,p_plugin_attribute_id=>wwv_flow_api.id(173503242488591243)
-,p_display_sequence=>10
-,p_display_value=>'1'
-,p_return_value=>'1'
-);
-wwv_flow_api.create_plugin_attr_value(
- p_id=>wwv_flow_api.id(173504283895592256)
-,p_plugin_attribute_id=>wwv_flow_api.id(173503242488591243)
-,p_display_sequence=>20
-,p_display_value=>'2'
-,p_return_value=>'2'
-);
-wwv_flow_api.create_plugin_attr_value(
- p_id=>wwv_flow_api.id(173504619255592591)
-,p_plugin_attribute_id=>wwv_flow_api.id(173503242488591243)
-,p_display_sequence=>30
-,p_display_value=>'3'
-,p_return_value=>'3'
-);
-wwv_flow_api.create_plugin_attr_value(
- p_id=>wwv_flow_api.id(173505066494593495)
-,p_plugin_attribute_id=>wwv_flow_api.id(173503242488591243)
-,p_display_sequence=>40
-,p_display_value=>'5'
-,p_return_value=>'5'
-);
-wwv_flow_api.create_plugin_attr_value(
- p_id=>wwv_flow_api.id(173505479552594075)
-,p_plugin_attribute_id=>wwv_flow_api.id(173503242488591243)
-,p_display_sequence=>50
-,p_display_value=>'10'
-,p_return_value=>'10'
-);
-wwv_flow_api.create_plugin_attr_value(
- p_id=>wwv_flow_api.id(173505891434594884)
-,p_plugin_attribute_id=>wwv_flow_api.id(173503242488591243)
-,p_display_sequence=>60
-,p_display_value=>'15'
-,p_return_value=>'15'
-);
-wwv_flow_api.create_plugin_attr_value(
- p_id=>wwv_flow_api.id(173506209837595411)
-,p_plugin_attribute_id=>wwv_flow_api.id(173503242488591243)
-,p_display_sequence=>70
-,p_display_value=>'20'
-,p_return_value=>'20'
-);
-wwv_flow_api.create_plugin_attr_value(
- p_id=>wwv_flow_api.id(173506642130595842)
-,p_plugin_attribute_id=>wwv_flow_api.id(173503242488591243)
-,p_display_sequence=>80
-,p_display_value=>'25'
-,p_return_value=>'25'
-);
-wwv_flow_api.create_plugin_attr_value(
- p_id=>wwv_flow_api.id(173507077810596712)
-,p_plugin_attribute_id=>wwv_flow_api.id(173503242488591243)
-,p_display_sequence=>90
-,p_display_value=>'30'
-,p_return_value=>'30'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(173496978643477199)
+ p_id=>wwv_flow_api.id(175049330862404038)
 ,p_plugin_id=>wwv_flow_api.id(346922828448891912)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>3
@@ -277,18 +218,142 @@ wwv_flow_api.create_plugin_attribute(
 ,p_lov_type=>'STATIC'
 );
 wwv_flow_api.create_plugin_attr_value(
- p_id=>wwv_flow_api.id(173497508576477690)
-,p_plugin_attribute_id=>wwv_flow_api.id(173496978643477199)
+ p_id=>wwv_flow_api.id(175049906427404540)
+,p_plugin_attribute_id=>wwv_flow_api.id(175049330862404038)
 ,p_display_sequence=>10
 ,p_display_value=>'Yes'
 ,p_return_value=>'Y'
 );
 wwv_flow_api.create_plugin_attr_value(
- p_id=>wwv_flow_api.id(173497925666478139)
-,p_plugin_attribute_id=>wwv_flow_api.id(173496978643477199)
+ p_id=>wwv_flow_api.id(175050412382404940)
+,p_plugin_attribute_id=>wwv_flow_api.id(175049330862404038)
 ,p_display_sequence=>20
 ,p_display_value=>'No'
 ,p_return_value=>'N'
+);
+wwv_flow_api.create_plugin_attribute(
+ p_id=>wwv_flow_api.id(175052598916407247)
+,p_plugin_id=>wwv_flow_api.id(346922828448891912)
+,p_attribute_scope=>'COMPONENT'
+,p_attribute_sequence=>4
+,p_display_sequence=>40
+,p_prompt=>'Interval (Sec)'
+,p_attribute_type=>'SELECT LIST'
+,p_is_required=>true
+,p_default_value=>'3'
+,p_is_translatable=>false
+,p_lov_type=>'STATIC'
+);
+wwv_flow_api.create_plugin_attr_value(
+ p_id=>wwv_flow_api.id(175053195691407916)
+,p_plugin_attribute_id=>wwv_flow_api.id(175052598916407247)
+,p_display_sequence=>10
+,p_display_value=>'1'
+,p_return_value=>'1'
+);
+wwv_flow_api.create_plugin_attr_value(
+ p_id=>wwv_flow_api.id(175053513501408316)
+,p_plugin_attribute_id=>wwv_flow_api.id(175052598916407247)
+,p_display_sequence=>20
+,p_display_value=>'3'
+,p_return_value=>'3'
+);
+wwv_flow_api.create_plugin_attr_value(
+ p_id=>wwv_flow_api.id(175053990995409560)
+,p_plugin_attribute_id=>wwv_flow_api.id(175052598916407247)
+,p_display_sequence=>30
+,p_display_value=>'5'
+,p_return_value=>'5'
+);
+wwv_flow_api.create_plugin_attr_value(
+ p_id=>wwv_flow_api.id(175054325207410839)
+,p_plugin_attribute_id=>wwv_flow_api.id(175052598916407247)
+,p_display_sequence=>40
+,p_display_value=>'10'
+,p_return_value=>'10'
+);
+wwv_flow_api.create_plugin_attr_value(
+ p_id=>wwv_flow_api.id(175054792915411242)
+,p_plugin_attribute_id=>wwv_flow_api.id(175052598916407247)
+,p_display_sequence=>50
+,p_display_value=>'15'
+,p_return_value=>'15'
+);
+wwv_flow_api.create_plugin_attr_value(
+ p_id=>wwv_flow_api.id(175055181436411677)
+,p_plugin_attribute_id=>wwv_flow_api.id(175052598916407247)
+,p_display_sequence=>60
+,p_display_value=>'20'
+,p_return_value=>'20'
+);
+wwv_flow_api.create_plugin_attr_value(
+ p_id=>wwv_flow_api.id(175055593162412056)
+,p_plugin_attribute_id=>wwv_flow_api.id(175052598916407247)
+,p_display_sequence=>70
+,p_display_value=>'25'
+,p_return_value=>'25'
+);
+wwv_flow_api.create_plugin_attr_value(
+ p_id=>wwv_flow_api.id(175055939672412520)
+,p_plugin_attribute_id=>wwv_flow_api.id(175052598916407247)
+,p_display_sequence=>80
+,p_display_value=>'30'
+,p_return_value=>'30'
+);
+wwv_flow_api.create_plugin_attribute(
+ p_id=>wwv_flow_api.id(175075443489544679)
+,p_plugin_id=>wwv_flow_api.id(346922828448891912)
+,p_attribute_scope=>'COMPONENT'
+,p_attribute_sequence=>5
+,p_display_sequence=>50
+,p_prompt=>'Border Radius'
+,p_attribute_type=>'SELECT LIST'
+,p_is_required=>true
+,p_default_value=>'0'
+,p_is_translatable=>false
+,p_lov_type=>'STATIC'
+);
+wwv_flow_api.create_plugin_attr_value(
+ p_id=>wwv_flow_api.id(175076082791545276)
+,p_plugin_attribute_id=>wwv_flow_api.id(175075443489544679)
+,p_display_sequence=>10
+,p_display_value=>'0'
+,p_return_value=>'0'
+);
+wwv_flow_api.create_plugin_attr_value(
+ p_id=>wwv_flow_api.id(175076480455545704)
+,p_plugin_attribute_id=>wwv_flow_api.id(175075443489544679)
+,p_display_sequence=>20
+,p_display_value=>'5'
+,p_return_value=>'5'
+);
+wwv_flow_api.create_plugin_attr_value(
+ p_id=>wwv_flow_api.id(175076854009546297)
+,p_plugin_attribute_id=>wwv_flow_api.id(175075443489544679)
+,p_display_sequence=>30
+,p_display_value=>'10'
+,p_return_value=>'10'
+);
+wwv_flow_api.create_plugin_attr_value(
+ p_id=>wwv_flow_api.id(175077228451546756)
+,p_plugin_attribute_id=>wwv_flow_api.id(175075443489544679)
+,p_display_sequence=>40
+,p_display_value=>'15'
+,p_return_value=>'15'
+);
+wwv_flow_api.create_plugin_attr_value(
+ p_id=>wwv_flow_api.id(175077612695547163)
+,p_plugin_attribute_id=>wwv_flow_api.id(175075443489544679)
+,p_display_sequence=>50
+,p_display_value=>'20'
+,p_return_value=>'20'
+);
+wwv_flow_api.create_plugin_attr_value(
+ p_id=>wwv_flow_api.id(175078024136547957)
+,p_plugin_attribute_id=>wwv_flow_api.id(175075443489544679)
+,p_display_sequence=>60
+,p_display_value=>'25'
+,p_return_value=>'25'
 );
 wwv_flow_api.create_plugin_std_attribute(
  p_id=>wwv_flow_api.id(346931205193891977)
